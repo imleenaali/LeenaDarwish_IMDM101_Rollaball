@@ -22,13 +22,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     rb = GetComponent<Rigidbody>();  
-     count = 0; 
+        rb = GetComponent<Rigidbody>();  
+        count = 0; 
 
-    SetCountText();
-    winTextObject.SetActive(false);
-
-
+        SetCountText();
+        winTextObject.SetActive(false);
     }
     void OnMove (InputValue movementValue)
     {
@@ -45,7 +43,7 @@ public class PlayerController : MonoBehaviour
 private void FixedUpdate()
 {
     Vector3 movement = new Vector3(movementX,0.0f,movementY);
-rb.AddForce(movement * speed);    
+    rb.AddForce(movement * speed);    
 }
 
  void OnTriggerEnter(Collider other)
@@ -59,14 +57,18 @@ rb.AddForce(movement * speed);
         SetCountText();
 
     }
-
 }
+
+
  void SetCountText ()
     {
 countText.text = "Count: " + count.ToString();
     if (count>= 12)
     {
+
         winTextObject.SetActive(true);
+
+        Destroy(GameObject.FindGameObjectWithTag("Enemy"));
     }
     }
 
